@@ -55,7 +55,7 @@ public class EmployeeController {
 		repository.deleteById(id);
 	}
 	
-	@GetMapping("/employees/{role}")
+	@GetMapping("/employees/search/{role}")
 	List<Employee> allWithRole(@PathVariable Role role) {
 		return repository.findByRole(role);
 	}

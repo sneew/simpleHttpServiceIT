@@ -4,6 +4,8 @@ $(function(){
 	var $name = $('#n1');
 	var $role = $('#r1');
 	var $baseUrl = "http://localhost:8080";
+	var $roleSearch = $('#role-search');
+	var $insertRole = $('#insert-role')
 	
 	$.ajax({
 		type: 'GET',
@@ -113,28 +115,27 @@ $(function(){
 		
 	});
 	
-	$.ajax({
-		type: 'GET',
-		url:'/employees',
-		success: function(employees){
-			$.each(employees, function(i, employee){
-				$insert.append(
-						"<li id='" + employee.id + "'>" +
-							"<p><strong>" + employee.name + "</strong> <input type='text' id='editName" + employee.id + "'/></p>" + 
-							"<p><strong>Role: </strong> " + employee.role + 
-								" <select type='text' id='editRole" + employee.id + "'>" +
-									"<option>BOSS</option>" +
-									"<option>MANAGER</option>" +
-									"<option>EMPLOYEE</option>" +
-									"<option>VOLUNTEER</option>" +
-								"</select>" +
-							"</p>" +
-							"<button id='" + employee.id + "' class='remove'>Delete</button>" +
-							"<button id='" + employee.id + "' class='save'>Save</button>" +
-						"</li>");
-				console.log('success',employee)
-			});
-		},
+	
+	$('#role-search').on('change', function(){
+		var $role = $roleSearch.val();
+		$.ajax({
+			type: 'GET',
+			url:'/employees/search/' + $role,
+			success: function(employeesByRole){
+				$.each(employeesByRole, function(i, employee){
+					$insertRole.append(
+							"<li id='" + employee.id + "'>" +
+								"<p><strong>" + employee.name + "</strong></p>" + 
+								"<p><strong>Role: </strong> " + employee.role + "</p>" +
+								"<button id='" + employee.id + "' class='remove'>Delete</button>"+
+							"</li>");
+					console.log('success',employee)
+				});
+			},
+		});
+	});
+		
+	
 });/*
 //ajax + js GET
 function getMethod(){
