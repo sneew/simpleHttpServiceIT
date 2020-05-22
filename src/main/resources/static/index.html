@@ -10,27 +10,32 @@
 	<body onLoad="getMethod()">
 		<h1>Exercici SimpleHTTPService</h1>
 		<h2>Add Employee:</h2>
-		Name: <input type="text" id="n1"> </br>
+		Name: <input type="text" id="n1" placeholder="Write a name"> </br>
 		Role: 	<select type="text" id="r1">
-					<option>BOSS</option>
-					<option>MANAGER</option>
-					<option>EMPLOYEE</option>
-					<option>VOLUNTEER</option>
+					<option value="" disabled selected>Select your option</option>
+					<option value="BOSS" >BOSS</option>
+					<option value="MANAGER" >MANAGER</option>
+					<option value="EMPLOYEE" >EMPLOYEE</option>
+					<option value="VOLUNTEER" >VOLUNTEER</option>
 				</select></br>
 		<button type="button" onClick="addEmployee()" id="add-item">Add Employee</button>
-		
-		<h2>Response:</h2>
-		<ul id="insert">  </ul>
-		
-		<h2>Response by role:</h2>
-		Select by: 	<select type="text" id="role-search">
-						<option value="" disabled selected>Select your option</option>
-						<option value="BOSS" >BOSS</option>
-						<option value="MANAGER" >MANAGER</option>
-						<option value="EMPLOYEE" >EMPLOYEE</option>
-						<option value="VOLUNTEER" >VOLUNTEER</option>
-					</select><p>  </p>
-		<ul id="insert-role">  </ul>
-		
+		<div>
+			<div id="response1">
+				<h2>Response:</h2> </br>
+				<ul id="insert">  </ul>
+			</div>
+			<div id="response2">
+			<h2>Response by role:</h2>
+				Select by: 	<select type="text" id="role-search">
+								<option value="" disabled selected>Select your option</option>
+								<option value="BOSS" >BOSS</option>
+								<option value="MANAGER" >MANAGER</option>
+								<option value="EMPLOYEE" >EMPLOYEE</option>
+								<option value="VOLUNTEER" >VOLUNTEER</option>
+							</select>
+							<span class="viewDown"> Scroll down </span>
+				<ul id="insert-role">  </ul>
+			</div>
+		</div>
 	</body>
 </html>

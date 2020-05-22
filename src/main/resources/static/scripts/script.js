@@ -26,15 +26,17 @@ $(function(){
 			$.each(employees, function(i, employee){
 				$insert.append(
 						"<li id='" + employee.id + "'>" +
-							"<p><strong>" + employee.name + "</strong> <input type='text' id='editName" + employee.id + "'/></p>" + 
-							"<p><strong>Role: </strong> " + employee.role + 
+							"<p><strong>" + employee.name + "</strong> <input type='text' id='editName" + employee.id + "' placeholder='Edit name'/></p>" + 
+							"<p><strong>Role: </strong> " + employee.role +
 								" <select type='text' id='editRole" + employee.id + "'>" +
+									"<option value='' disabled selected>Select new role</option>" +
 									"<option>BOSS</option>" +
 									"<option>MANAGER</option>" +
 									"<option>EMPLOYEE</option>" +
 									"<option>VOLUNTEER</option>" +
 								"</select>" +
 							"</p>" +
+							"<p><strong>Salary: </strong> " + employee.salary +  "</p>" +
 							"<button id='" + employee.id + "' class='remove'>Delete</button>" +
 							"<button id='" + employee.id + "' class='save'>Save</button>" +
 						"</li>");
@@ -59,15 +61,17 @@ $(function(){
 			success: function(newEmployee){
 				$insert.append(
 						"<li id='" + newEmployee.id + "'>" +
-							"<p><strong>" + newEmployee.name + "</strong><input type='text' id='editName" + newEmployee.id + "'/></p>" +
+							"<p><strong>" + newEmployee.name + "</strong> <input type='text' id='editName" + newEmployee.id + "' placeholder='Edit name'/></p>" +
 							"<p><strong>Role: </strong>" + newEmployee.role + 
-								"<select type='text' id='editRole" + newEmployee.id + "'>" +
+								" <select type='text' id='editRole" + newEmployee.id + "'>" +
+									"<option value='' disabled selected>Select new role</option>" +
 									"<option>BOSS</option>" +
 									"<option>MANAGER</option>" +
 									"<option>EMPLOYEE</option>" +
 									"<option>VOLUNTEER</option>" +
 								"</select>" +
 							"</p>" +
+							"<p><strong>Salary: </strong>" + newEmployee.salary +  "</p>" +
 							"<button id='" + newEmployee.id + "' class='remove'>Delete</button>" +
 							"<button id='" + newEmployee.id + "' class='save'>Save</button>" +
 						"</li>");
@@ -117,16 +121,23 @@ $(function(){
 	
 	
 	$('#role-search').on('change', function(){
+		$insertRole.html("");
 		var $role = $roleSearch.val();
 		$.ajax({
 			type: 'GET',
 			url:'/employees/search/' + $role,
 			success: function(employeesByRole){
+				/*if(employeesByRole.length!=0){
+					$(".viewDown").show(); //queda millor: $(".viewDown").css('display','block');
+				}else{
+					$(".viewDown").hide(); //queda millor: $(".viewDown").css('display','none');
+				}*/
 				$.each(employeesByRole, function(i, employee){
 					$insertRole.append(
-							"<li id='" + employee.id + "'>" +
-								"<p><strong>" + employee.name + "</strong></p>" + 
+							"<li>" +
+								"<p><strong>" + employee.name + "</strong> </p>" + 
 								"<p><strong>Role: </strong> " + employee.role + "</p>" +
+								"<p><strong>Salary: </strong> " + employee.salary + "</p>" +
 								"<button id='" + employee.id + "' class='remove'>Delete</button>"+
 							"</li>");
 					console.log('success',employee)
@@ -136,9 +147,9 @@ $(function(){
 	});
 		
 	
-});/*
+});
 //ajax + js GET
-function getMethod(){
+/*function getMethod(){
 	$.ajax({
 		type: 'GET',
 		url:'/employees',

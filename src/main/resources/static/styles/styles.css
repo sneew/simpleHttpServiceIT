@@ -1,3 +1,15 @@
 li{
-	background: #dedfe0;
+	background: #dfdfdf;
+}
+
+.viewDown{
+	color: red;
+	display: none;
+}
+
+div div{
+	width: 400px;
+	display: block;
+	float: left;
+	margin-right: 50px;
 }
