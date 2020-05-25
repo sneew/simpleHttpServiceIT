@@ -21,6 +21,8 @@ public class Employee {
 	public Employee(String name, Role role) {
 		this.name = name;
 		this.role = role;
+		
+		payDay();
 	}
 
 	public int getSalary() {
@@ -53,6 +55,21 @@ public class Employee {
 
 	public void setRole(Role role) {
 		this.role = role;
+		payDay();
 	}
+
+	private void payDay() {
+		
+		if(this.role==Role.BOSS) {
+			this.salary = 5000;
+		}else if(this.role==Role.EMPLOYEE) {
+			this.salary = 2000;
+		}else if(this.role==Role.MANAGER) {
+			this.salary = 3500;
+		}else if(this.role==Role.VOLUNTEER) {
+			this.salary = 0;
+		}
+	}
+	
 	
 }
